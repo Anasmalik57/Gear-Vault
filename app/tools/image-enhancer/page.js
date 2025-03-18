@@ -19,6 +19,7 @@ export default function ImageEnhancer() {
 
     setIsLoading(true);
     setOriginalImage(URL.createObjectURL(file));
+    setEnhancedImage(null);
 
     const formData = new FormData();
     formData.append("image", file);
@@ -33,6 +34,7 @@ export default function ImageEnhancer() {
       if (!response.ok) throw new Error("Failed to enhance image");
 
       const data = await response.json();
+      console.log("Enhanced Image Data:", data.enhancedImage); // Debugging
       setEnhancedImage(data.enhancedImage);
     } catch (error) {
       console.error("Error enhancing image:", error);
@@ -134,7 +136,7 @@ export default function ImageEnhancer() {
   }, []);
 
   return (
-    <div className="w-full min-h-[80.5vh] *:w-full  text-white flex flex-col items-center justify-center py-2 px-4">
+    <div className="w-full min-h-[80.5vh] *:w-full text-white flex flex-col items-center justify-center py-2 px-4">
       {/* Upload Section */}
       {!originalImage && (
         <section
@@ -149,7 +151,7 @@ export default function ImageEnhancer() {
           </p>
           <label
             htmlFor="image-upload"
-            className="cursor-pointer text-white bg-green-400  px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-500 transition-all duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="cursor-pointer text-white bg-green-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-500 transition-all duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400"
           >
             <span className="mr-2">📸</span>
             Upload Image
@@ -221,7 +223,7 @@ export default function ImageEnhancer() {
           </h2>
 
           <div
-            className="relative w-full h-[400px] md:h-[450px]  overflow-hidden border border-gray-700"
+            className="relative w-full h-[400px] md:h-[450px] overflow-hidden border border-gray-700"
             ref={containerRef}
             style={{ userSelect: "none" }} // Prevent text selection
           >

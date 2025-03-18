@@ -51,7 +51,7 @@ const Home = () => {
         </p>
 
         <div className="flex gap-4 animate-scale-in animation-delay-400">
-          <Link href={"/image-enhancer"}>
+          <Link href={"/tools"}>
             <button
               className="bg-green-400 cursor-pointer text-[#0A0F1D] px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-500 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400"
               aria-label="Get started with image transformation"
